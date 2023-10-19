@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     private float _jumpHeight = 20.0f;
     private float _yVelocity;
     private bool _canDoubleJump = false;
+    private int _coins = 0;
+    private UIManager _uiManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,13 @@ public class Player : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         if (_controller == null)
         {
-            Debug.LogError("CharacterController could not be found in Player.");
+            Debug.LogError("Could not get CharacterController in Player.");
+        }
+
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if (_uiManager == null)
+        {
+            Debug.LogError("Could not get UIManager in Player.");
         }
     }
 
@@ -50,8 +59,12 @@ public class Player : MonoBehaviour
         }
         velocity.y = _yVelocity;
         _controller.Move(velocity * Time.deltaTime);
-        
-
-        
     }
+
+    public void AddCoin()
+    {
+        _coins++;
+        _uiManager.UpdateCoinDisplay(_coins);
+    }
+
 }
