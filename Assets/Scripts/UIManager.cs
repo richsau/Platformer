@@ -1,22 +1,22 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text _coinText;
-    [SerializeField]
-    private TMP_Text _livesText;
+    private TMP_Text _coinText, _livesText;
 
-    public void UpdateCoinDisplay(int coinCount)
+    public void UpdateCoinDisplay(int coins)
     {
-        _coinText.text = "Coins: " + coinCount.ToString();
+        _coinText.text = "Coins: " + coins.ToString();
     }
 
-    public void UpdateLivesDisplay(int livesCount)
+    public void UpdateLivesDisplay(int lives)
     {
-        _livesText.text = "Lives: " + livesCount.ToString();
+        _livesText.text = "Lives: " + lives.ToString();
     }
+   
 }
