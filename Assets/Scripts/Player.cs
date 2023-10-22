@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 5.0f;
     [SerializeField]
-    private float _gravity = 0.25f; //1.0f;
+    private float _gravity = 0.25f; // 1.0f;
     [SerializeField]
-    private float _jumpHeight = 20.0f; //15.0f;
+    private float _jumpHeight = 20.0f; //15.0f; 
     private float _yVelocity;
     private bool _canDoubleJump = false;
     [SerializeField]
@@ -89,5 +89,10 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    public int CoinsCollected()
+    {
+        return _coins;
     }
 }
