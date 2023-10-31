@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private Vector3 _direction, _velocity;
     private bool _canWallJump = false;
     private Vector3 _wallSurfaceNormal;
+    private float _pushPower = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +87,20 @@ public class Player : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.transform.tag == "MoveableBox")
+        {
+            Rigidbody body = hit.collider.GetComponent<Rigidbody>();
+            if (body != null)
+            {
+                Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, 0);
+                body.velocity = pushDir * _pushPower; 
+            }
+            else
+            {
+                Debug.LogError("Could not get Rigidbody in OnControllerColliderHit.");
+            }
+        }
+
         if (_controller.isGrounded == false && hit.transform.tag == "Wall")
         {
             _wallSurfaceNormal = hit.normal;
